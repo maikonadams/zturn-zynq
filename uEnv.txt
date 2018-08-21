@@ -1,0 +1,3 @@
+bootargs=console=ttyPS0,115200 root=/dev/ram rw earlyprintk
+load_image=fatload mmc 0 ${kernel_load_address} ${kernel_image} && fatload mmc 0 ${devicetree_load_address} ${devicetree_image} && fatload mmc 0 ${ramdisk_load_address} ${ramdisk_image}
+uenvcmd=run mmc_loadbit_fat && echo Copying Linux from SD to RAM... && run load_image && bootm ${kernel_load_address} ${ramdisk_load_address} ${devicetree_load_address}
